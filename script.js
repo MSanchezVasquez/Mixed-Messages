@@ -28,67 +28,33 @@ const habilidades = [
   "Genio del regate",
 ];
 
-// Arte ASCII
 const arteASCII = [
-  `
-   ______
-  /      \\
- |        |
- |  O   O |
- |    <>  |
- |   ---  |
-  \\______/
-  `,
-  `
-     ____
-   /      \\
-  |  O  O  |
-  |    |   |
-  |  \\__/  |
-   \\______/
-  `,
-  `
-    (__)     
-   /    \\    
-  |      |   
-  |  O   |   
-  |  O   |   
-   \\____/    
-  `,
-  `
-     ______
-    /      \\
-   |  O   O |
-   |   \\_/  |
-   |   |    |
-   |  / \\   |
-    \\______/
-  `,
+  `\n   ______\n  /      \\\n |        |\n |  O   O |\n |    <>  |\n |   ---  |\n  \\______/\n`,
+  `\n     ____\n   /      \\\n  |  O  O  |\n  |    |   |\n  |  \\__/  |\n   \\______/\n`,
+  `\n    (__)     \n   /    \\    \n  |      |   \n  |  O   |   \n  |  O   |   \n   \\____/    \n`,
+  `\n     ______\n    /      \\\n   |  O   O |\n   |   \\_/  |\n   |   |    |\n   |  / \\   |\n    \\______/\n`,
 ];
 
-// Función para generar un número aleatorio
 const generarNumeroAleatorio = (max) => Math.floor(Math.random() * max);
 
-// Función para generar el mensaje
 const generarMensaje = () => {
-  // Verificación de que los arrays no están vacíos
-  if (!equipos.length || !jugadores.length || !habilidades.length) {
-    return "Error: uno de los arrays está vacío.";
-  }
-
-  // Se seleccionan aleatoriamente un equipo, un jugador y una habilidad
   const equipo = equipos[generarNumeroAleatorio(equipos.length)];
   const jugador = jugadores[generarNumeroAleatorio(jugadores.length)];
   const habilidad = habilidades[generarNumeroAleatorio(habilidades.length)];
   const arte = arteASCII[generarNumeroAleatorio(arteASCII.length)];
 
-  // Uso de template literals
   return `
+  ${arte}
   Eres parte del equipo del: ${equipo}
   Te tocó al jugador: ${jugador}
   Con la habilidad de: ${habilidad}
-  ${arte}
   `;
 };
 
-console.log(generarMensaje());
+let boton = document.getElementById("button");
+let resultado = document.getElementById("resultado");
+
+boton.addEventListener("click", () => {
+  // Limpiar resultados previos
+  resultado.innerHTML = generarMensaje();
+});
